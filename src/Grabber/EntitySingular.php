@@ -128,6 +128,21 @@ abstract class EntitySingular extends Entity
     }
 
     /**
+     * Get the array.
+     */
+    public function toArray(): array
+    {
+        if ($this->isMissing()) {
+            return [$this->getMissingBody()];
+        }
+
+        if ($this->isInvalid()) {
+            return [$this->getInvalidBody()];
+        }
+        return $this->response;
+    }
+
+    /**
      * Get the body for missing pages.
      */
     protected function getMissingBody(): string
